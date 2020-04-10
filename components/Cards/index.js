@@ -62,8 +62,7 @@ function cardMaker(){
             headline.textContent = item.headline;
             name.textContent = `By ${item.authorName}`;
 
-            cardsContainer.appendChild(card);
-        
+            cardsContainer.appendChild(card);       
         })
     }
     })

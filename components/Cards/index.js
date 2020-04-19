@@ -18,25 +18,33 @@
 // </div>
 //
 // Use your function to create a card for each of the articles and add the card to the DOM.
-function cardMaker(){      
-    axios.get('https://lambda-times-backend.herokuapp.com/articles')
-    .then(response => {
-        let javascript = response.data.articles.javascript;
-        let bootstrap = response.data.articles.bootstrap;
-        let tech = response.data.articles.technology;
-        let jquery = response.data.articles.jquery;
-        let node = response.data.articles.node;
-        let cardsContainer = document.querySelector('.cards-container');
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
 
-        let articles = [
-            javascript,
-            bootstrap,
-            tech,
-            jquery,
-            node
-        ]
+.then(response => {   
+    cardMaker(response);
+})
+
+.catch(error => {
+    console.log(error)
+})
+
+function cardMaker(response){      
+    let javascript = response.data.articles.javascript;
+    let bootstrap = response.data.articles.bootstrap;
+    let tech = response.data.articles.technology;
+    let jquery = response.data.articles.jquery;
+    let node = response.data.articles.node;
+    let cardsContainer = document.querySelector('.cards-container');
+    
+    let articles = [
+        javascript,
+        bootstrap,
+        tech,
+        jquery,
+        node
+    ]
         
-        for(let i = 0; i < articles.length; i++){
+    for(let i = 0; i < articles.length; i++){
         articles[i].forEach(item => {
             
             let card = document.createElement('div');
@@ -65,8 +73,4 @@ function cardMaker(){
             cardsContainer.appendChild(card);       
         })
     }
-    })
-    .catch(error => {console.log(error)})
 }
-
-cardMaker();
